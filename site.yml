@@ -1,0 +1,63 @@
+---
+- name: Baseline for every server
+  hosts: all
+  tasks:
+    - name: Record the seed in a file
+      ansible.builtin.copy:
+        content: "seed={{ seed }}\n"
+        dest: /etc/bytown-seed
+        mode: "0644"
+
+    - name: Install curl
+      ansible.builtin.apt:
+        name: curl
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+- name: Web servers
+  hosts: web
+  tasks:
+    - name: Install nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+
+    - name: Publish the home page from a template
+      ansible.builtin.template:
+        src: index.html.j2
+        dest: /var/www/html/index.html
+        mode: "0644"
+      notify: Reload nginx
+
+    - name: Make sure nginx is running
+      ansible.builtin.command:
+        cmd: nginx
+        creates: /run/nginx.pid
+
+    - name: Check that the page answers and shows the seed
+      ansible.builtin.uri:
+        url: http://localhost
+        return_content: true
+      register: page
+      failed_when: (seed | string) not in page.content
+
+  handlers:
+    - name: Reload nginx
+      ansible.builtin.command:
+        cmd: nginx -s reload
+
+- name: Database servers
+  hosts: db
+  tasks:
+    - name: Install sqlite3
+      ansible.builtin.apt:
+        name: sqlite3
+        state: present
+
+    - name: Label the role of this server
+      ansible.builtin.lineinfile:
+        path: /etc/bytown-role
+        line: "role=database site={{ site }}"
+        create: true
+        mode: "0644"

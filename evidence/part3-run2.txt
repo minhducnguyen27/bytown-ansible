@@ -1,0 +1,56 @@
+
+PLAY [Baseline for every server] ***********************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bytown-db1-12]
+ok: [bytown-web1-12]
+ok: [bytown-web2-12]
+
+TASK [Record the seed in a file] ***********************************************
+ok: [bytown-db1-12]
+ok: [bytown-web2-12]
+ok: [bytown-web1-12]
+
+TASK [Install curl] ************************************************************
+ok: [bytown-db1-12]
+ok: [bytown-web2-12]
+ok: [bytown-web1-12]
+
+PLAY [Web servers] *************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bytown-web1-12]
+ok: [bytown-web2-12]
+
+TASK [Install nginx] ***********************************************************
+ok: [bytown-web1-12]
+ok: [bytown-web2-12]
+
+TASK [Publish the home page from a template] ***********************************
+ok: [bytown-web1-12]
+ok: [bytown-web2-12]
+
+TASK [Make sure nginx is running] **********************************************
+ok: [bytown-web1-12]
+ok: [bytown-web2-12]
+
+TASK [Check that the page answers and shows the seed] **************************
+ok: [bytown-web1-12]
+ok: [bytown-web2-12]
+
+PLAY [Database servers] ********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bytown-db1-12]
+
+TASK [Install sqlite3] *********************************************************
+ok: [bytown-db1-12]
+
+TASK [Label the role of this server] *******************************************
+ok: [bytown-db1-12]
+
+PLAY RECAP *********************************************************************
+bytown-db1-12              : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+bytown-web1-12             : ok=8    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+bytown-web2-12             : ok=8    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

@@ -1,0 +1,12 @@
+bytown-web2-12 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+bytown-web1-12 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+bytown-db1-12 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}

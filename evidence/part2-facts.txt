@@ -1,0 +1,18 @@
+bytown-db1-12 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_distribution_release": "bookworm"
+    },
+    "changed": false
+}
+bytown-web1-12 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_distribution_release": "bookworm"
+    },
+    "changed": false
+}
+bytown-web2-12 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_distribution_release": "bookworm"
+    },
+    "changed": false
+}

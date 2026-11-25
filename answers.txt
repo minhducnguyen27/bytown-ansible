@@ -1,0 +1,3 @@
+Q1: idempotent meaning an operation produce the same result no matter how many times applied. The output show "changed=0" prove the playbook is idempotent
+Q2: The ping failed because Ansible can connect and run Python on the server
+Q3: The handler only run when another task tell it a change has occurred. Second run does not cause any change so handler do not run. 

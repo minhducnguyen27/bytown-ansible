@@ -1,0 +1,60 @@
+
+PLAY [Baseline for every server] ***********************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bytown-web2-12]
+ok: [bytown-db1-12]
+ok: [bytown-web1-12]
+
+TASK [Record the seed in a file] ***********************************************
+changed: [bytown-web1-12]
+changed: [bytown-db1-12]
+changed: [bytown-web2-12]
+
+TASK [Install curl] ************************************************************
+changed: [bytown-web1-12]
+changed: [bytown-db1-12]
+changed: [bytown-web2-12]
+
+PLAY [Web servers] *************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bytown-web1-12]
+ok: [bytown-web2-12]
+
+TASK [Install nginx] ***********************************************************
+changed: [bytown-web1-12]
+changed: [bytown-web2-12]
+
+TASK [Publish the home page from a template] ***********************************
+changed: [bytown-web1-12]
+changed: [bytown-web2-12]
+
+TASK [Make sure nginx is running] **********************************************
+changed: [bytown-web2-12]
+changed: [bytown-web1-12]
+
+TASK [Check that the page answers and shows the seed] **************************
+ok: [bytown-web1-12]
+ok: [bytown-web2-12]
+
+RUNNING HANDLER [Reload nginx] *************************************************
+changed: [bytown-web1-12]
+changed: [bytown-web2-12]
+
+PLAY [Database servers] ********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bytown-db1-12]
+
+TASK [Install sqlite3] *********************************************************
+changed: [bytown-db1-12]
+
+TASK [Label the role of this server] *******************************************
+changed: [bytown-db1-12]
+
+PLAY RECAP *********************************************************************
+bytown-db1-12              : ok=6    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+bytown-web1-12             : ok=9    changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+bytown-web2-12             : ok=9    changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

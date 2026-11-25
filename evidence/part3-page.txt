@@ -1,0 +1,38 @@
+bytown-web2-12 | SUCCESS => {
+    "accept_ranges": "bytes",
+    "changed": false,
+    "connection": "close",
+    "content": "<h1>Bytown NetOps Web</h1>\n<p>Site: ott-dc1</p>\n<p>Seed: 12</p>\n<p>Served by: bytown-web2-12 (Debian 12)</p>\n",
+    "content_length": "109",
+    "content_type": "text/html",
+    "cookies": {},
+    "cookies_string": "",
+    "date": "Tue, 24 Nov 2026 17:48:19 GMT",
+    "elapsed": 0,
+    "etag": "\"6b05cd5f-6d\"",
+    "last_modified": "Tue, 24 Nov 2026 17:46:07 GMT",
+    "msg": "OK (109 bytes)",
+    "redirected": false,
+    "server": "nginx/1.22.1",
+    "status": 200,
+    "url": "http://localhost"
+}
+bytown-web1-12 | SUCCESS => {
+    "accept_ranges": "bytes",
+    "changed": false,
+    "connection": "close",
+    "content": "<h1>Bytown NetOps Web</h1>\n<p>Site: ott-dc1</p>\n<p>Seed: 12</p>\n<p>Served by: bytown-web1-12 (Debian 12)</p>\n",
+    "content_length": "109",
+    "content_type": "text/html",
+    "cookies": {},
+    "cookies_string": "",
+    "date": "Tue, 24 Nov 2026 17:48:19 GMT",
+    "elapsed": 0,
+    "etag": "\"6b05cd5f-6d\"",
+    "last_modified": "Tue, 24 Nov 2026 17:46:07 GMT",
+    "msg": "OK (109 bytes)",
+    "redirected": false,
+    "server": "nginx/1.22.1",
+    "status": 200,
+    "url": "http://localhost"
+}

@@ -1,0 +1,84 @@
+
+PLAY [Baseline for every server] ***********************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bytown-db1-12]
+ok: [bytown-web2-12]
+ok: [bytown-web1-12]
+
+TASK [Record the seed in a file] ***********************************************
+ok: [bytown-db1-12]
+ok: [bytown-web1-12]
+ok: [bytown-web2-12]
+
+TASK [Install curl] ************************************************************
+ok: [bytown-web1-12]
+ok: [bytown-db1-12]
+ok: [bytown-web2-12]
+
+PLAY [Web servers] *************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bytown-web1-12]
+ok: [bytown-web2-12]
+
+TASK [Install nginx] ***********************************************************
+ok: [bytown-web2-12]
+ok: [bytown-web1-12]
+
+TASK [Publish the home page from a template] ***********************************
+--- before: /var/www/html/index.html
++++ after: /home/david/.ansible/tmp/ansible-local-24884xihr600v/tmpceo39xa3/index.html.j2
+@@ -1,4 +1,4 @@
+ <h1>Bytown NetOps Web</h1>
+-<p>Site: ott-dc1</p>
++<p>Site: ott-dc2</p>
+ <p>Seed: 12</p>
+ <p>Served by: bytown-web1-12 (Debian 12)</p>
+
+changed: [bytown-web1-12]
+--- before: /var/www/html/index.html
++++ after: /home/david/.ansible/tmp/ansible-local-24884xihr600v/tmpdqb4rxm9/index.html.j2
+@@ -1,4 +1,4 @@
+ <h1>Bytown NetOps Web</h1>
+-<p>Site: ott-dc1</p>
++<p>Site: ott-dc2</p>
+ <p>Seed: 12</p>
+ <p>Served by: bytown-web2-12 (Debian 12)</p>
+
+changed: [bytown-web2-12]
+
+TASK [Make sure nginx is running] **********************************************
+ok: [bytown-web2-12]
+ok: [bytown-web1-12]
+
+TASK [Check that the page answers and shows the seed] **************************
+skipping: [bytown-web2-12]
+skipping: [bytown-web1-12]
+
+RUNNING HANDLER [Reload nginx] *************************************************
+skipping: [bytown-web1-12]
+skipping: [bytown-web2-12]
+
+PLAY [Database servers] ********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bytown-db1-12]
+
+TASK [Install sqlite3] *********************************************************
+ok: [bytown-db1-12]
+
+TASK [Label the role of this server] *******************************************
+--- before: /etc/bytown-role (content)
++++ after: /etc/bytown-role (content)
+@@ -1 +1,2 @@
+ role=database site=ott-dc1
++role=database site=ott-dc2
+
+changed: [bytown-db1-12]
+
+PLAY RECAP *********************************************************************
+bytown-db1-12              : ok=6    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+bytown-web1-12             : ok=7    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+bytown-web2-12             : ok=7    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
